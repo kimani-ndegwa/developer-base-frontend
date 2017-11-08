@@ -5,16 +5,16 @@ const DeveloperList = ({developers}) => {
     return(
         <table>
             <thead>
-            </thead>
             <tr>
                 <td>Name</td>
                 <td>Skillset</td>
             </tr>
+            </thead>
             <tbody>
                 {
                     developers.map(developer=>{
                         return(
-                            <tr>
+                            <tr key={developer._id}>
                             <td>
                                 {developer.name}
                             </td>
@@ -31,3 +31,5 @@ const DeveloperList = ({developers}) => {
         </table>
     )
 }
+
+export default DeveloperList;

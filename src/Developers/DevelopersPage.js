@@ -44,7 +44,7 @@ export class DevelopersPage extends Component{
                 name: this.state.developerName
             }),
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             })
         }).then(response=>{
             if(response.ok) return response.json();

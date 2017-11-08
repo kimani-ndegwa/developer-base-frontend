@@ -1,3 +1,5 @@
 export {Loader} from './Loader';
 export {AddComponent} from './AddComponent';
-export {ConfirmChange} from './ConfirmChange';
+export {ConfirmDelete} from './ConfirmDelete';
+export {EditDeveloperComponent} from './EditDeveloperComponent';
+export {EditSkillComponent} from './EditSkillComponent';

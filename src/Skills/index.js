@@ -1,1 +1,1 @@
-export * from './SkillComponent';
+export {SkillComponent} from './SkillComponent';

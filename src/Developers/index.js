@@ -1,2 +1,2 @@
-export * from './DevelopersPage';
-export * from './DeveloperDetails';
+export {DevelopersPage} from './DevelopersPage';
+export {DeveloperDetails} from './DeveloperDetails';

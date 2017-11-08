@@ -1,5 +1,6 @@
 import React, {Component} from './react';
 import DeveloperList from './DeveloperList';
+import {ROOT_BACKEND_URL} from '../utils';
 
 
 
@@ -11,6 +12,7 @@ export class DevelopersPage extends Component{
             developers : []
         }
     }
+
 
     render(){
         return(

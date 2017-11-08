@@ -31,14 +31,6 @@ export class Skills extends Component{
         })
     }
 
-    // _getOnlyTitleFromSkillSet = (skillsData) => {
-    //     let skills = [];
-    //     skillsData.map(skill=>{
-    //         skills.push(skill.title);
-    //     })
-
-    //     return skills;
-    // }
     render(){
 
         return(

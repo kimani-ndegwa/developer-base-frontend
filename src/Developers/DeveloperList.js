@@ -9,7 +9,7 @@ const DeveloperList = ({developers}) => {
             <thead>
             <tr>
                 <td>Name</td>
-                <td>Skillset</td>
+                <td>Details</td>
             </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@ const DeveloperList = ({developers}) => {
                             </td>
 
                             <td>
-                                <Link to={`/developer/${developer._id}`}>View Details</Link>
+                                <Link to={`/developer/${developer._id}`}>{'View ' + developer.name + '\'s Details'}</Link>
 
                             </td>
                             </tr>

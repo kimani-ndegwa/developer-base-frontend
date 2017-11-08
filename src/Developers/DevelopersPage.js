@@ -9,8 +9,19 @@ export class DevelopersPage extends Component{
     constructor(props){
         super(props);
         this.state = {
-            developers : []
+            developers : [],
+            errorText: ''
         }
+    }
+
+    componentDidMount(){
+        fetch(ROOT_BACKEND_URL, {
+            method: 'GET'
+        }).then(developers=>{
+            this.setState(developers);
+        }).catch(e=>{
+            this.setState(errorText: e);
+        })
     }
 
 
@@ -18,6 +29,9 @@ export class DevelopersPage extends Component{
         return(
             <div>
                 Here are our developers
+                <DeveloperList
+                developers={this.state.developers}
+                />
             </div>
         )
     }

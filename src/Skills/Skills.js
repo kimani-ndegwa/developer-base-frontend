@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils'
+import {ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils';
+import {SkillComponent} from './SkillComponent';
 
 // Give this the developer and it is able to make a fetch call to get the skills of that particular dev.
 export class Skills extends Component{
@@ -22,23 +23,24 @@ export class Skills extends Component{
         .then(response=>{
             if(response.ok)return response.json()
             throw new Error('Error occured getting skills')
-        }).then(skillsData=>{
-            let skills = this._getOnlyTitleFromSkillSet(skillsData);
+        }).then(skills=>{
+            // let skills = this._getOnlyTitleFromSkillSet(skillsData);
             this.setState({skills});
         }).catch(e=>{
             this.setState({error: e});
         })
     }
 
-    _getOnlyTitleFromSkillSet = (skillsData) => {
-        let skills = [];
-        skillsData.map(skill=>{
-            skills.push(skill.title);
-        })
+    // _getOnlyTitleFromSkillSet = (skillsData) => {
+    //     let skills = [];
+    //     skillsData.map(skill=>{
+    //         skills.push(skill.title);
+    //     })
 
-        return skills;
-    }
+    //     return skills;
+    // }
     render(){
+
         return(
             <div>
                 {
@@ -47,7 +49,10 @@ export class Skills extends Component{
                     :
                     this.state.skills.map((skill, index)=>{
                         return(
-                            <span key={index}>{skill}&nbsp;</span>
+                            <SkillComponent
+                                key={index}
+                                skill={skill}
+                            />
                         )
                     })
                 }

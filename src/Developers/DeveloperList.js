@@ -22,7 +22,8 @@ const DeveloperList = ({developers}) => {
                             </td>
 
                             <td>
-                                <Skills developerId={developer._id}/>
+                                <Link to={`/developer/${developer._id}`}>View Details</Link>
+
                             </td>
                             </tr>
 

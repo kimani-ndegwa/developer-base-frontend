@@ -44,15 +44,14 @@ export class DevelopersPage extends Component{
                 name: this.state.developerName
             }),
             headers: new Headers({
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
+                'Content-Type': 'application/json'
             })
         }).then(response=>{
             if(response.ok) return response.json();
             throw new Error('Error Creating Developer');
-        }).then(r=>{
+        }).then(developer =>{
             let updatedDevelopers = [...this.state.developers];
-            updatedDevelopers.push(r);
+            updatedDevelopers.push(developer);
             this.setState({
                 developers: updatedDevelopers
             })

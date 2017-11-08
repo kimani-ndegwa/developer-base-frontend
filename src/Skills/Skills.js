@@ -12,11 +12,10 @@ export class Skills extends Component{
 
     }
     componentDidMount(){
-        this._getSkills();
-        console.log(ROOT_SINGLE_DEVELOPER_BACKEND_URL+ '/' + this.props.developerId + '/skills')
+        this.getSkills();
     }
 
-    _getSkills = () => {
+    getSkills = () => {
         return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + '/' + this.props.developerId + '/skills', {
             method : 'GET'
         })
@@ -40,7 +39,6 @@ export class Skills extends Component{
         return skills;
     }
     render(){
-        console.log(this.state)
         return(
             <div>
                 {

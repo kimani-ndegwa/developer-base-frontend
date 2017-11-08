@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DeveloperList from './DeveloperList';
-import {ROOT_BACKEND_URL} from '../utils';
-import {Loader} from '../Common';
+import {ROOT_BACKEND_URL, ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils';
+import {Loader, AddComponent} from '../Common';
 
 
 
@@ -11,7 +11,10 @@ export class DevelopersPage extends Component{
         super(props);
         this.state = {
             developers : [],
-            errorText: ''
+            errorText: '',
+            addingDeveloper: false,
+            developerName: '',
+            skillTitle: ''
         }
     }
 
@@ -28,6 +31,43 @@ export class DevelopersPage extends Component{
         })
     }
 
+    handleAddDeveloper = () => {
+        this.setState({
+            addingDeveloper: true
+        })
+    }
+
+    handleSubmitDeveloper = (event) =>{
+        fetch(ROOT_BACKEND_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                name: this.state.developerName
+            }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            })
+        }).then(response=>{
+            if(response.ok) return response.json();
+            throw new Error('Error Creating Developer');
+        }).then(r=>{
+            let updatedDevelopers = [...this.state.developers];
+            updatedDevelopers.push(r);
+            this.setState({
+                developers: updatedDevelopers
+            })
+        }).catch(e=>{
+            console.log(e);
+        })
+    }
+
+    handleChangeInputComponent = (event) => {
+        event.preventDefault();
+        let value = event.target.value;
+        this.setState({
+            developerName: value
+        });
+    }
 
     render(){
         if(this.state.developers.length === 0){
@@ -36,6 +76,18 @@ export class DevelopersPage extends Component{
         return(
             <div>
                 Here are our developers
+                <a onClick={this.handleAddDeveloper}>+ Add New Developer?</a>
+                {
+                    this.state.addingDeveloper && 
+
+                    <AddComponent
+                        domain='Developer'
+                        handleSubmitData={this.handleSubmitDeveloper}
+                        handleChangeInput={this.handleChangeInputComponent}
+                    />
+             
+                }
+                
                 <DeveloperList
                 developers={this.state.developers}
                 />

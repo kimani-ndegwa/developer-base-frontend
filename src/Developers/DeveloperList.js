@@ -17,7 +17,7 @@ const DeveloperList = ({developers}) => {
                         return(
                             <tr key={developer._id}>
                             <td>
-                                {developer.name}
+                                <Link to={`/developer/${developer._id}`}>{developer.name}</Link>
                             </td>
 
                             <td>

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils';
 import {
     EditSkillComponent,
-    ConfirmDelete
+    ConfirmDelete,
+    Loader
 } from '../Common';
 import './Skills.css';
 
@@ -19,26 +20,26 @@ export class Skills extends Component{
         }
     }
 
-    componentDidMount(){
-        this.getSkills();
-    }
+    // componentDidMount(){
+    //     // this.getSkills();
+    // }
 
-    getSkills = () => {
-        return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + "/" +  this.props.developerId + "/skills" , {
-            method: 'GET'
-        }).then(response=>{
-            if(response.ok) return response.json();
-            throw new Error('Error fetching the skills')
-        }).then(skills=>{
-            this.setState({
-                skills
-            })
-        }).catch(e=>{
-            this.setState({
-                error: e
-            })
-        })
-    }
+    // // getSkills = () => {
+    // //     return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + "/" +  this.props.developerId + "/skills" , {
+    // //         method: 'GET'
+    // //     }).then(response=>{
+    // //         if(response.ok) return response.json();
+    // //         throw new Error('Error fetching the skills')
+    // //     }).then(skills=>{
+    // //         this.setState({
+    // //             skills
+    // //         })
+    // //     }).catch(e=>{
+    // //         this.setState({
+    // //             error: e
+    // //         })
+    // //     })
+    // // }
 
     handleEditSkill = (event, developerId, skillId) => {
         event.preventDefault();
@@ -124,13 +125,17 @@ export class Skills extends Component{
     }
 
     render(){
+        if (this.props.skills.length===0){
+            return(
+                <Loader/>
+            )
+        }
         return(
             <div className="skill-container">
                 <div>
-                {this.state.skills.length === 0 ? 
-                <span>This developer has no skills added yet</span>:
+                {
                     
-                    this.state.skills.map((skill)=>{
+                    this.props.skills.map((skill)=>{
                         return (
                             <div key={skill._id} className="skill">
                             <h1>{skill.title}</h1>

@@ -1,0 +1,25 @@
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 80%;
+}
+
+thead{
+    border-top: 1px solid rgba(0,0,0,.2);
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    font-weight: bold;
+}
+
+table td{
+    padding: 1em 2em;
+    text-decoration: none;
+}
+
+table td a {
+    text-decoration: none;
+    color: #fff;
+    background: #B96AC9;
+    padding: 1em 2em;
+    border: 1px solid  rgba(0,0,0,.2);
+    border-radius: 3px
+}

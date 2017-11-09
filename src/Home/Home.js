@@ -7,7 +7,7 @@ export class Home extends Component{
         return(
             <div className="home">
                 <div className="catalogue">
-                <h2>Welcome to Dev Base</h2>
+                <h2 className="home-title">Dev Base</h2>
             <DevelopersPage/>
             </div>>
             </div>

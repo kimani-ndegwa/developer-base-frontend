@@ -19,3 +19,8 @@
     box-shadow: 2px 5px 20px rgba(0,0,0,.2);
     border-radius: 5px;
 }
+
+.home-title{
+    color: #6200B3;
+    margin: 2em 0;
+}

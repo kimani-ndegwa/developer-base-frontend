@@ -1,0 +1,67 @@
+/*
+====================
+Add Section
+====================
+*/
+
+.overlay{
+    position: fixed;
+    top: 0 ;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8)
+}
+
+.add-section{
+    width: 50vw;
+    height: 300px;
+    margin: 10em auto;
+    background: white;
+    border-radius:5px; 
+}
+
+.input-section{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 20px;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: 5em;
+
+}
+
+input{
+    padding: 2em;
+    font-size: medium;
+
+}
+input:focus{
+    outline: 1px solid #6200B3
+}
+
+input::placeholder{
+    font-size: medium;
+}
+
+
+button {
+    background: #6200B3;
+    color: white;
+    padding: 2em;
+    font-size: medium;
+    cursor: pointer;
+}
+button:focus{
+    outline: none;
+}
+
+.close-btn{
+    position: relative;
+    left: 18em;
+    top: 1em;
+    color: #6200B3;
+    font-weight: bold;
+    cursor: pointer;
+}

@@ -49,6 +49,11 @@ export class DeveloperDetails extends Component{
         })
     }
 
+    handleCloseComponent = () => {
+        this.setState({
+            addingSkill: false
+        })
+    }
 
 
     getSkills = () => {
@@ -155,6 +160,7 @@ export class DeveloperDetails extends Component{
     }
 
     render(){
+        console.log(this.state.skills, "Here")
         if(this.state.confirmDeleteDeveloper){
             return(
                 <Redirect to='/'/>
@@ -162,35 +168,16 @@ export class DeveloperDetails extends Component{
         }
         return(
             <div>
-                    <span onClick={this.hanldeAddSkill}>Add New Skill?</span>
                     {
                         this.state.addingSkill &&
                         <AddComponent
                             domain="Skill"
                             handleChangeInput={this.handleChangeInputComponent}
                             handleSubmitData={this.handleSubmitSkill}
+                            handleCloseComponent={this.handleCloseComponent}
                         
                         />
                     }
-
-{/*                     
-
-                     {
-                                this.state.skills.length === 0 ?
-                                <span>This developer has no skills added yet.</span>
-                                :
-                                this.state.skills.map((skill, index)=>{
-                                    return(
-                                        <div key={index}>
-                                        <SkillComponent
-                                            skill={skill}
-                                            developerId={this.props.match.params._id}
-                                        />
-
-                                        </div>
-                                    )
-                                })
-                    } */}
 
                     <Skills
                     developerId={this.props.match.params._id}
@@ -198,7 +185,8 @@ export class DeveloperDetails extends Component{
                     />
 
                 <div className='icon-dev-actions'>
-                        <span onClick={this.handleToggleEditDeveloper}>Edit Developer</span>
+                        <span className="add-skill" onClick={this.hanldeAddSkill}>Add New Skill?</span>
+                        <span className="action" onClick={this.handleToggleEditDeveloper}>Edit Developer</span>
                         {
                             this.state.edittingDeveloper && 
                             <EditDeveloperComponent
@@ -207,7 +195,7 @@ export class DeveloperDetails extends Component{
                             
                             />
                         }
-                        <span onClick={this.deletingDeveloper}>Delete Developer</span>
+                        <span  className="action" onClick={this.deletingDeveloper}>Delete Developer</span>
                         {
                             this.state.deleteDeveloper &&
                             <ConfirmDelete

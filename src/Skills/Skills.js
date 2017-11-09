@@ -4,6 +4,7 @@ import {
     EditSkillComponent,
     ConfirmDelete
 } from '../Common';
+import './Skills.css';
 
 export class Skills extends Component{
     constructor(){
@@ -123,20 +124,21 @@ export class Skills extends Component{
     }
 
     render(){
-        console.log(this.state.skill)
         return(
-            <div>
+            <div className="skill-container">
                 <div>
-                {
+                {this.state.skills.length === 0 ? 
+                <span>This developer has no skills added yet</span>:
+                    
                     this.state.skills.map((skill)=>{
                         return (
-                            <div key={skill._id}>
-                            
-                            {skill.title}
+                            <div key={skill._id} className="skill">
+                            <h1>{skill.title}</h1>
+                            <div className="action-section">
+                            <span className="action" onClick={(e)=> this.openEditSkillComponent(e, skill._id)}>Edit?</span>
+                            <span className="action" onClick={(e)=>this.showConfirmDeleteSkill(e, skill._id)}>Delete?</span>
 
-                        
-                            <span onClick={(e)=> this.openEditSkillComponent(e, skill._id)}>Edit</span>
-                            <span onClick={(e)=>this.showConfirmDeleteSkill(e, skill._id)}>Delete</span>
+                            </div>
                             </div>
                         )
                     })

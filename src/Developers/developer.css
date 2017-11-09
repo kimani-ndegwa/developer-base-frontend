@@ -42,3 +42,24 @@ table td{
     border: 1px solid #6200B3;
     background: white   
 }
+
+.icon-dev-actions {
+    position: fixed;
+    bottom: 10em;
+    right: 5em;
+}
+
+.action {
+    border: 1px solid #6200B3;
+    background: white;
+    color: #6200b3;
+    cursor: pointer;
+}
+
+.add-skill{
+    background: #6200B3;
+    color: white;
+    padding: .5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}

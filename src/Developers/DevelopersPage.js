@@ -31,9 +31,9 @@ export class DevelopersPage extends Component{
         })
     }
 
-    handleAddDeveloper = () => {
+    handleToogleAddDeveloperComponent = () => {
         this.setState({
-            addingDeveloper: true
+            addingDeveloper: !this.state.addingDeveloper
         })
     }
 
@@ -53,7 +53,8 @@ export class DevelopersPage extends Component{
             let updatedDevelopers = [...this.state.developers];
             updatedDevelopers.push(developer);
             this.setState({
-                developers: updatedDevelopers
+                developers: updatedDevelopers,
+                addingDeveloper: false
             })
         }).catch(e=>{
             console.log(e);
@@ -74,8 +75,7 @@ export class DevelopersPage extends Component{
         }
         return(
             <div>
-                Here are our developers
-                <a onClick={this.handleAddDeveloper}>+ Add New Developer?</a>
+                <a className="add-new" onClick={this.handleToogleAddDeveloperComponent}>+ Add New Developer?</a>
                 {
                     this.state.addingDeveloper && 
 
@@ -83,6 +83,7 @@ export class DevelopersPage extends Component{
                         domain='Developer'
                         handleSubmitData={this.handleSubmitDeveloper}
                         handleChangeInput={this.handleChangeInputComponent}
+                        handleCloseComponent={this.handleToogleAddDeveloperComponent}
                     />
              
                 }

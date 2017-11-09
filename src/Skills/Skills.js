@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import {ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils';
 import {
     EditSkillComponent,
-    ConfirmDelete
+    ConfirmDelete,
 } from '../Common';
+import './Skills.css';
 
 export class Skills extends Component{
     constructor(){
         super();
         this.state = {
-            skills: [],
             error:' ',
+            skills: [],
             showEditSkillComponent:false,
             showConfirmDelete: false,
             skillId: '',
@@ -23,22 +24,19 @@ export class Skills extends Component{
     }
 
     getSkills = () => {
-        return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + "/" +  this.props.developerId + "/skills" , {
-            method: 'GET'
-        }).then(response=>{
-            if(response.ok) return response.json();
-            throw new Error('Error fetching the skills')
+        return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + '/' + this.props.developerId + '/skills', {
+            method : 'GET'
+        })
+        .then(response=>{
+            if(response.ok)return response.json()
+            throw new Error('Error occured getting skills')
         }).then(skills=>{
-            this.setState({
-                skills
-            })
+            this.setState({skills});
         }).catch(e=>{
-            this.setState({
-                error: e
-            })
+            this.setState({error: e});
         })
     }
-
+    
     handleEditSkill = (event, developerId, skillId) => {
         event.preventDefault();
         let edittedTitle = event.target['edit-title'].value;
@@ -87,7 +85,6 @@ export class Skills extends Component{
 
     openEditSkillComponent = (e, skillId) => {
         e.preventDefault();
-        console.log('Id here', skillId)
         this.setState({
             showEditSkillComponent: true,
             skillId,
@@ -95,6 +92,13 @@ export class Skills extends Component{
         })
 
 
+    }
+
+    closeEditSection = (event) =>{
+        console.log(event, "Here")
+        this.setState({
+            showEditSkillComponent: false
+        })
     }
 
     showConfirmDeleteSkill = (e, skillId) => {
@@ -108,13 +112,13 @@ export class Skills extends Component{
     }
 
     hideConfirmeDelete = () => {
-        this.setState({
+    this.setState({
             showConfirmDelete: false
         })
     }
 
     filterThroughSkillsAndGetRightOneForEdit = (id) =>{
-        let skill = this.state.skills.filter(skill=>{
+        let skill = this.props.skills.filter(skill=>{
             return skill._id == id
         });
         
@@ -123,20 +127,25 @@ export class Skills extends Component{
     }
 
     render(){
-        console.log(this.state.skill)
+        if (this.props.skills.length===0){
+            return(
+                <span>This developer has no skills yet.</span>
+            )
+        }
         return(
-            <div>
+            <div className="skill-container">
                 <div>
                 {
+                    
                     this.state.skills.map((skill)=>{
                         return (
-                            <div key={skill._id}>
-                            
-                            {skill.title}
+                            <div key={skill._id} className="skill">
+                            <h1>{skill.title}</h1>
+                            <div className="action-section">
+                            <span className="action" onClick={(e)=> this.openEditSkillComponent(e, skill._id)}>Edit?</span>
+                            <span className="action" onClick={(e)=>this.showConfirmDeleteSkill(e, skill._id)}>Delete?</span>
 
-                        
-                            <span onClick={(e)=> this.openEditSkillComponent(e, skill._id)}>Edit</span>
-                            <span onClick={(e)=>this.showConfirmDeleteSkill(e, skill._id)}>Delete</span>
+                            </div>
                             </div>
                         )
                     })
@@ -146,6 +155,8 @@ export class Skills extends Component{
                     this.state.showEditSkillComponent && 
                         <EditSkillComponent
                             skill={this.state.skill}
+                            skills={this.props.skills}
+                            closeEditSection={this.closeEditSection}
                             handleEditData={(e) => this.handleEditSkill(e, this.state.skill.developer,this.state.skill._id)}
                         />
                 }

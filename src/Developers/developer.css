@@ -1,6 +1,6 @@
 table {
     border-collapse: collapse;
-    margin: 0 auto;
+    margin: 3em auto;
     width: 80%;
 }
 
@@ -15,11 +15,51 @@ table td{
     text-decoration: none;
 }
 
-table td a {
-    text-decoration: none;
-    color: #fff;
-    background: #B96AC9;
-    padding: 1em 2em;
-    border: 1px solid  rgba(0,0,0,.2);
-    border-radius: 3px
+
+/*
+=================
+
+=================
+
+*/
+
+.add-new{
+    padding:  1em 1.5em;
+    border-radius: 5px;
+    color: white;
+    position: absolute;
+    right: 6em;
+    top: 1em;
+    background: #6200B3;
+    border: 1px solid #6200B3;
+    margin-bottom: 2em;
+    cursor: pointer;
+    transition:  all .3s;
+}
+
+.add-new:hover{
+    color: #6200B3;
+    border: 1px solid #6200B3;
+    background: white   
+}
+
+.icon-dev-actions {
+    position: fixed;
+    top: 5em;
+    right: 5em;
+}
+
+.action {
+    border: 1px solid #6200B3;
+    background: white;
+    color: #6200b3;
+    cursor: pointer;
+}
+
+.add-skill{
+    background: #6200B3;
+    color: white;
+    padding: .5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
 }

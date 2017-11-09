@@ -11,8 +11,8 @@ export class Skills extends Component{
     constructor(){
         super();
         this.state = {
-            skills: [],
             error:' ',
+            skills: [],
             showEditSkillComponent:false,
             showConfirmDelete: false,
             skillId: '',
@@ -20,27 +20,24 @@ export class Skills extends Component{
         }
     }
 
-    // componentDidMount(){
-    //     // this.getSkills();
-    // }
+    componentDidMount(){
+        this.getSkills();
+    }
 
-    // // getSkills = () => {
-    // //     return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + "/" +  this.props.developerId + "/skills" , {
-    // //         method: 'GET'
-    // //     }).then(response=>{
-    // //         if(response.ok) return response.json();
-    // //         throw new Error('Error fetching the skills')
-    // //     }).then(skills=>{
-    // //         this.setState({
-    // //             skills
-    // //         })
-    // //     }).catch(e=>{
-    // //         this.setState({
-    // //             error: e
-    // //         })
-    // //     })
-    // // }
-
+    getSkills = () => {
+        return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + '/' + this.props.developerId + '/skills', {
+            method : 'GET'
+        })
+        .then(response=>{
+            if(response.ok)return response.json()
+            throw new Error('Error occured getting skills')
+        }).then(skills=>{
+            this.setState({skills});
+        }).catch(e=>{
+            this.setState({error: e});
+        })
+    }
+    
     handleEditSkill = (event, developerId, skillId) => {
         event.preventDefault();
         let edittedTitle = event.target['edit-title'].value;
@@ -89,7 +86,6 @@ export class Skills extends Component{
 
     openEditSkillComponent = (e, skillId) => {
         e.preventDefault();
-        console.log('Id here', skillId)
         this.setState({
             showEditSkillComponent: true,
             skillId,
@@ -97,6 +93,13 @@ export class Skills extends Component{
         })
 
 
+    }
+
+    closeEditSection = (event) =>{
+        console.log(event, "Here")
+        this.setState({
+            showEditSkillComponent: false
+        })
     }
 
     showConfirmDeleteSkill = (e, skillId) => {
@@ -110,13 +113,13 @@ export class Skills extends Component{
     }
 
     hideConfirmeDelete = () => {
-        this.setState({
+    this.setState({
             showConfirmDelete: false
         })
     }
 
     filterThroughSkillsAndGetRightOneForEdit = (id) =>{
-        let skill = this.state.skills.filter(skill=>{
+        let skill = this.props.skills.filter(skill=>{
             return skill._id == id
         });
         
@@ -135,7 +138,7 @@ export class Skills extends Component{
                 <div>
                 {
                     
-                    this.props.skills.map((skill)=>{
+                    this.state.skills.map((skill)=>{
                         return (
                             <div key={skill._id} className="skill">
                             <h1>{skill.title}</h1>
@@ -153,6 +156,8 @@ export class Skills extends Component{
                     this.state.showEditSkillComponent && 
                         <EditSkillComponent
                             skill={this.state.skill}
+                            skills={this.props.skills}
+                            closeEditSection={this.closeEditSection}
                             handleEditData={(e) => this.handleEditSkill(e, this.state.skill.developer,this.state.skill._id)}
                         />
                 }

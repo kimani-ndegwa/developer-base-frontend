@@ -4,7 +4,8 @@ Add Section
 ====================
 */
 
-.overlay{
+.overlay,
+.edit-form{
     position: fixed;
     top: 0 ;
     left: 0;
@@ -14,7 +15,8 @@ Add Section
     z-index: 5;
 }
 
-.add-section{
+.add-section,
+.edit-section{
     width: 50vw;
     height: 300px;
     margin: 10em auto;
@@ -46,7 +48,7 @@ input::placeholder{
     font-size: medium;
 }
 
-
+.input-section input[type='submit'],
 button {
     background: #6200B3;
     color: white;
@@ -65,4 +67,32 @@ button:focus{
     color: #6200B3;
     font-weight: bold;
     cursor: pointer;
+}
+
+/*
+====================
+ConfirmDelete
+====================
+*/
+
+.content{
+   width: 60%;
+   margin: 5em auto;
+   background: white; 
+   text-align: center;
+   position: relative;
+   height: 150px;
+   top: 2em;
+   border-radius: 5px;
+
+}
+
+
+.action{
+    border: 1px solid #6200B3;
+}
+
+.actions-section{
+    position: relative;
+    top:4em;
 }

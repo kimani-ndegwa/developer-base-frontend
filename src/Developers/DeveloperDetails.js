@@ -159,8 +159,13 @@ export class DeveloperDetails extends Component{
         })
     }
 
+    handleToggleEditDeveloper = () => {
+        this.setState({
+            edittingDeveloper: !this.state.edittingDeveloper
+        })
+    }
+
     render(){
-        console.log(this.state.skills, "Here")
         if(this.state.confirmDeleteDeveloper){
             return(
                 <Redirect to='/'/>
@@ -192,7 +197,7 @@ export class DeveloperDetails extends Component{
                             <EditDeveloperComponent
                                 developer={this.state.developer}
                                 handleEditData={this._handleEditDeveloper}
-                            
+                                closeEditSection={this.handleToggleEditDeveloper}
                             />
                         }
                         <span  className="action" onClick={this.deletingDeveloper}>Delete Developer</span>

@@ -3,7 +3,6 @@ import {ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils';
 import {
     EditSkillComponent,
     ConfirmDelete,
-    Loader
 } from '../Common';
 import './Skills.css';
 
@@ -130,7 +129,7 @@ export class Skills extends Component{
     render(){
         if (this.props.skills.length===0){
             return(
-                <Loader/>
+                <span>This developer has no skills yet.</span>
             )
         }
         return(

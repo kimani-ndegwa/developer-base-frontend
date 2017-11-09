@@ -204,6 +204,7 @@ export class DeveloperDetails extends Component{
                         {
                             this.state.deleteDeveloper &&
                             <ConfirmDelete
+                                domain={'Developer'}
                                 confirmDelete={this._handleDeleteDeveloper}
                                 unConfirmDelete={this.deletingDeveloper}
                             />

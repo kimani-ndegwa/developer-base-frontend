@@ -1,0 +1,21 @@
+.home{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left:0;
+    top:0
+}
+
+.catalogue {
+    width: 70vw;
+    height: 70vh;
+    position: relative;
+    top: 10%;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    box-shadow: 2px 5px 20px rgba(0,0,0,.2);
+    border-radius: 5px;
+}

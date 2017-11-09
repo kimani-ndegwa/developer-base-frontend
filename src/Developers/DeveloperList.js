@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Skills} from '../Skills';
+import './developer.css';
 
 
 const DeveloperList = ({developers}) => {
@@ -18,7 +19,7 @@ const DeveloperList = ({developers}) => {
                         return(
                             <tr key={developer._id}>
                             <td>
-                                <Link to={`/developer/${developer._id}`}>{developer.name}</Link>
+                                {developer.name}
                             </td>
 
                             <td>

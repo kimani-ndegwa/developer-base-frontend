@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SkillComponent} from '../Skills';
+import {SkillComponent, Skills} from '../Skills';
 import {
     AddComponent,
     EditDeveloperComponent,
@@ -22,6 +22,8 @@ export class DeveloperDetails extends Component{
             developer: {},
             skills: [],
             error: '',
+            showEditSkillComponent:false,
+            skillId: ''
         }
     }
     componentDidMount(){
@@ -29,7 +31,7 @@ export class DeveloperDetails extends Component{
         this.getCurrentDeveloper();
     }
 
-    addingSkill= () => {
+    hanldeAddSkill= () => {
         this.setState({
             addingSkill: true
         })
@@ -160,7 +162,7 @@ export class DeveloperDetails extends Component{
         }
         return(
             <div>
-                    <span onClick={this.handleAddSkill}>Add New Skill?</span>
+                    <span onClick={this.hanldeAddSkill}>Add New Skill?</span>
                     {
                         this.state.addingSkill &&
                         <AddComponent
@@ -171,7 +173,9 @@ export class DeveloperDetails extends Component{
                         />
                     }
 
-                    {
+{/*                     
+
+                     {
                                 this.state.skills.length === 0 ?
                                 <span>This developer has no skills added yet.</span>
                                 :
@@ -180,12 +184,18 @@ export class DeveloperDetails extends Component{
                                         <div key={index}>
                                         <SkillComponent
                                             skill={skill}
+                                            developerId={this.props.match.params._id}
                                         />
 
                                         </div>
                                     )
                                 })
-                    }
+                    } */}
+
+                    <Skills
+                    developerId={this.props.match.params._id}
+                    skills={this.state.skills}
+                    />
 
                 <div className='icon-dev-actions'>
                         <span onClick={this.handleToggleEditDeveloper}>Edit Developer</span>

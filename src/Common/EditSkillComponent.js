@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
 export class EditSkillComponent extends Component{
+
+    constructor(){
+        super();
+    }
     render(){
         return(
             <form onSubmit={this.props.handleEditData}>

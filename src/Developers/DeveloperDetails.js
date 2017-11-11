@@ -7,7 +7,7 @@ import {
     ConfirmDelete
 } from '../Common';
 import {ROOT_SINGLE_DEVELOPER_BACKEND_URL} from '../utils';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 
 export class DeveloperDetails extends Component{
     constructor(props){
@@ -86,7 +86,7 @@ export class DeveloperDetails extends Component{
 
     handleSubmitSkill = (event) =>{
         let developerId = this.props.match.params._id
-        fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + '/' + developerId +  '/skills/', {
+        return fetch(ROOT_SINGLE_DEVELOPER_BACKEND_URL + '/' + developerId +  '/skills/', {
             method: 'POST',
             body: JSON.stringify({
                 title: this.state.skillTitle
@@ -101,7 +101,8 @@ export class DeveloperDetails extends Component{
             let updatedSkills = [...this.state.skills];
             updatedSkills.push(skill);
             this.setState({
-                skills: updatedSkills
+                skills: updatedSkills,
+                addingSkill: false
             })
         }).catch(e=>{
             console.log(e);
@@ -209,6 +210,7 @@ export class DeveloperDetails extends Component{
                                 unConfirmDelete={this.deletingDeveloper}
                             />
                         }
+                        <span className="action"><Link style={{textDecoration: 'none'}}to={'/'}>Back</Link></span>
                     </div>
 
             </div>
